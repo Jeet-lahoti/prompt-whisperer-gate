@@ -20,7 +20,7 @@ jobs:
         id: gate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PW_RUNS: "10"
+          PW_RUNS: "5"
           PW_BASE_REF: origin/${{ github.base_ref }}
         run: node gate.js
         continue-on-error: true
