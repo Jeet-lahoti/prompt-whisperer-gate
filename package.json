@@ -1,1 +1,8 @@
-
+{
+  "name": "prompt-whisperer-gate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CI gate that red-teams system prompt changes",
+  "engines": { "node": ">=20" }
+}
