@@ -27,9 +27,12 @@ export async function diffPrompts(oldPrompt, newPrompt, suite, runs = 10) {
   }
 
   let verdict = "no_regression";
-  if (newRes.score_high < oldRes.score_low) verdict = "regression_confirmed";
+  const sharpSwing = regressions.some(
+    (r) => r.old_failure_rate <= 0.1 && r.new_failure_rate >= 0.8
+  );
+  if (newRes.score_high < oldRes.score_low || sharpSwing) verdict = "regression_confirmed";
   else if (newRes.trust_score < oldRes.trust_score) verdict = "possible_regression";
-
+  
   const newHigh = regressions.find((r) => r.severity === "high");
   const summary =
     verdict === "no_regression"
