@@ -44,6 +44,7 @@ for (const file of changed) {
   }
 
   const r = await diffPrompts(oldPrompt, newPrompt, suite, RUNS);
+  console.log("SUITE_JSON_START\n" + JSON.stringify(suite, null, 2) + "\nSUITE_JSON_END");
   const icon = { regression_confirmed: "FAIL", possible_regression: "WARN", no_regression: "PASS" }[r.verdict];
   if (r.verdict === "regression_confirmed") failed = true;
 
