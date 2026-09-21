@@ -52,11 +52,20 @@ for (const file of changed) {
   comment += `| | Score | 95% range |\n|---|---|---|\n`;
   comment += `| Old | ${r.old_trust_score} | ${r.old_score_low} to ${r.old_score_high} |\n`;
   comment += `| New | ${r.new_trust_score} | ${r.new_score_low} to ${r.new_score_high} |\n\n`;
-  if (r.regressions.length) {
-    comment += `Weakened:\n`;
-    for (const x of r.regressions) comment += `- ${x.attack_type} (${x.severity}): ${x.explanation}\n`;
-    comment += `\n`;
-  }
+if (r.regressions.length) {
+  comment += Weakened:\n;
+  for (const x of r.regressions) {
+    comment += - ${x.attack_type} (${x.severity}): ${x.explanation}\n;
+if (x.example_attack) {
+  const short = (x.example_response || "").replace(/\s+/g, " ").slice(0, 400);
+  comment += <details><summary>Show example</summary>\n\n;
+    comment += Attack: ${x.example_attack.replace(/\s+/g, " ")}\n\n;
+  comment += Bot response (first 400 characters): ${short}\n\n;
+  comment += Judge reason: ${x.example_reason}\n\n</details>\n;
+}
+}
+comment += \n;
+}
   if (r.verdict === "possible_regression") {
     comment += `The score dropped but the ranges overlap, so this is not confirmed at ${RUNS} runs per attack. Review the wording change.\n\n`;
   }
