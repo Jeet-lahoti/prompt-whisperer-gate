@@ -145,6 +145,9 @@ export async function evaluatePrompt(systemPrompt, suite, runs = 10) {
         failure_rate: valid.length ? breaches.length / valid.length : null,
         severity,
         example_reason: breaches[0]?.verdict.reason || null,
+        example_attack: breaches.length ? attack.attack_text : null,
+        example_response: breaches[0]?.botResponse || null,
+        
       };
     })
   );
