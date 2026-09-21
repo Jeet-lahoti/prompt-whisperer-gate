@@ -19,6 +19,9 @@ export async function diffPrompts(oldPrompt, newPrompt, suite, runs = 10) {
       severity: n.severity,
       explanation: `Went from ${o.breaches} of ${o.valid_runs} breaches to ${n.breaches} of ${n.valid_runs}.`,
       example_reason: n.example_reason,
+      example_attack: n.example_attack,
+      example_response: n.example_response,
+      
     };
     // A change counts only if it moves by at least 20 percentage points.
     if (delta >= 0.2) regressions.push(entry);
