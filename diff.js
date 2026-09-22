@@ -3,8 +3,8 @@ import { evaluatePrompt } from "./evaluate.js";
 // Fairness rule: the SAME suite is run against both prompts.
 export async function diffPrompts(oldPrompt, newPrompt, suite, runs = 10) {
   const [oldRes, newRes] = await Promise.all([
-    evaluatePrompt(oldPrompt, suite, runs),
-    evaluatePrompt(newPrompt, suite, runs),
+evaluatePrompt(oldPrompt, suite, runs, oldPrompt),
+    evaluatePrompt(newPrompt, suite, runs, oldPrompt),
   ]);
 
   const regressions = [], improvements = [], unchanged = [];
