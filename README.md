@@ -98,7 +98,7 @@ I recomputed ten reported scores by hand from the weights above (seven web app c
 
 ## Roadmap
 
-- Gate judge alignment (open): the web app judges both prompts against the OLD prompt, but the gate's judge still reads each prompt's own text, so gate scores can under-report a regression. The fix is a six-line change, not yet ported or verified.
+Gate judge alignment (done): the gate's judge now reads the OLD prompt as the reference for both evaluations, matching the web app. Verified on pull request 1 (FAIL, regression confirmed).
 - Tool-use test: an agent prompt where attacks try to trigger a forbidden tool call.
 - Multi-turn attacks.
 - A no-API lint that flags when a "never" or "must" sentence is deleted or softened between versions.
