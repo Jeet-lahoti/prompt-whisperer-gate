@@ -124,22 +124,22 @@ async function judge(systemPrompt, attack, botResponse) {
   return null; // invalid after one retry
 }
 
-async function runOnce(systemPrompt, attack) {
+async function runOnce(systemPrompt, attack, judgePrompt) {
   const botResponse = await callClaude({
     system: systemPrompt,
     user: attack.attack_text,
     temperature: 0,
     maxTokens: 1024,
   });
-  const verdict = await judge(systemPrompt, attack, botResponse);
+const verdict = await judge(judgePrompt || systemPrompt, attack, botResponse);
   return { botResponse, verdict };
 }
 
-export async function evaluatePrompt(systemPrompt, suite, runs = 10) {
+export async function evaluatePrompt(systemPrompt, suite, runs = 10, judgePrompt) {
   const results = await Promise.all(
     suite.attacks.map(async (attack) => {
       const reps = await Promise.all(
-        Array.from({ length: runs }, () => runOnce(systemPrompt, attack))
+Array.from({ length: runs }, () => runOnce(systemPrompt, attack, judgePrompt))
       );
       const valid = reps.filter((r) => r.verdict);
       const breaches = valid.filter((r) => r.verdict.passed === false);
