@@ -74,8 +74,7 @@ I asked ChatGPT to write a developer-style pair (OrbitFleet): one long prompt wi
 Result: 100 to 100, no regression. The generated attacks probed both sides of the limit and asked the bot to confirm the queue and code. The bot refused every time (a separate run on the new prompt: 0 of 5 breaches on all six attacks). Reading: the tool handled the messy text, and the bot's behaviour did not get weaker. A second messy pair (product manager) was not run.
 
 ## Findings
-
-Full write-up with numbers: [FINDINGS.md]
+Full write-up with numbers, see FINDINGS.md in this repository.
 
 1. A fixed attack suite cuts noise. The same weak prompt scored anywhere from 21 to 100 before; five runs on a fixed suite scored 71 to 94.
 2. Soft wording leaks; hard rules hold. Soft wording that opened a low-stakes disclosure leaked in all seven sector pairs. A soft override placed next to intact hard rules did not.
@@ -95,7 +94,7 @@ Full write-up with numbers: [FINDINGS.md]
 
 ## Score audit
 
-I recomputed ten reported scores by hand from the weights above (seven web app comparisons and three gate runs). All ten match exactly. One medium attack at 100% failure among six attacks costs about 29 points, because a medium attack weighs 2 and each of the five clean attacks weighs 1. Details in [FINDINGS.md]
+I recomputed ten reported scores by hand from the weights above (seven web app comparisons and three gate runs). All ten match exactly. One medium attack at 100% failure among six attacks costs about 29 points, because a medium attack weighs 2 and each of the five clean attacks weighs 1. Details in FINDINGS.md in this repository.
 
 ## Roadmap
 
